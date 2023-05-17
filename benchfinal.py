@@ -131,6 +131,7 @@ def benchmark_sorting_algorithms():
         ax.plot(input_sizes, results[algorithm], label=algorithm)
 
     ax.legend()
+    plt.savefig('sorting_algorithms.png')  # Save the plot to a file
     plt.show()
 
 benchmark_sorting_algorithms()

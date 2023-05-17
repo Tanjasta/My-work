@@ -1,6 +1,7 @@
 import random
 import time
 import matplotlib.pyplot as plt
+import pandas as pd
 
 def bubblesort(arr):
     n = len(arr)  # Get the length of the array
@@ -94,6 +95,9 @@ def mergesort(array):
 def generate_random_array(n):
     return [random.randint(0, 1000) for _ in range(n)]
 
+
+# Sorting algorithm implementations...
+
 def benchmark_sorting_algorithms():
     algorithms = {
         "Bubble Sort": bubblesort,
@@ -103,19 +107,32 @@ def benchmark_sorting_algorithms():
         "Merge Sort": mergesort
     }
 
-    input_sizes = [10, 100, 500, 1000, 5000, 10000]
+    input_sizes = [100, 250, 500, 750, 1000, 1250, 2500, 3750, 5000, 6250, 7500, 8750, 10000]
     results = {algorithm: [] for algorithm in algorithms}
+    output_results = []  # To store the results in the desired format
 
     for size in input_sizes:
         for algorithm in algorithms:
             arr = generate_random_array(size)
             start_time = time.time()
-            algorithms[algorithm](arr)
+            if algorithm == "Counting Sort":
+                max_val = max(arr)
+                algorithms[algorithm](arr, max_val)
+            else:
+                algorithms[algorithm](arr)
             end_time = time.time()
-            total_time = (end_time - start_time) * 1000  # Convert to milliseconds
+            total_time = (end_time - start_time) * 1000
             avg_time = total_time / 10.0
             results[algorithm].append(avg_time)
-            print(f"{algorithm} with {size} elements: {avg_time:.6f} milliseconds")
+
+    # Store the results in the desired format
+    for algorithm in algorithms:
+        output_results.append([f"{algorithm}"] + [f"{time:.3f}" for time in results[algorithm]])
+
+    # Print the results
+    columns = ["Algorithm"] + [str(size) for size in input_sizes]
+    df = pd.DataFrame(output_results, columns=columns)
+    print(df.to_string(index=False))
 
     # Plot the results
     fig, ax = plt.subplots()
@@ -127,7 +144,10 @@ def benchmark_sorting_algorithms():
         ax.plot(input_sizes, results[algorithm], label=algorithm)
 
     ax.legend()
+    plt.savefig('sorting_algorithms.png')  # Save the plot to a file
     plt.show()
 
-benchmark_sorting_algorithms()
 
+# Rest of the code...
+
+benchmark_sorting_algorithms()
