@@ -110,7 +110,11 @@ def benchmark_sorting_algorithms():
         for algorithm in algorithms:
             arr = generate_random_array(size)
             start_time = time.time()
-            algorithms[algorithm](arr)
+            if algorithm == "Counting Sort":
+                max_val = max(arr)  # Determine the maximum value in the array
+                algorithms[algorithm](arr, max_val)  # Pass the max_val argument
+            else:
+                algorithms[algorithm](arr)
             end_time = time.time()
             total_time = (end_time - start_time) * 1000  # Convert to milliseconds
             avg_time = total_time / 10.0
@@ -128,6 +132,8 @@ def benchmark_sorting_algorithms():
 
     ax.legend()
     plt.show()
+
+benchmark_sorting_algorithms()
 
 
 
