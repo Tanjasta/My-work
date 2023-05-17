@@ -1,4 +1,4 @@
-def bubbleSort(arr):
+def bubblesort(arr):
     n = len(arr)  # Get the length of the array
     for i in range(n):  # Iterate over each element in the array
         for j in range(0, n-i-1):  # Iterate from the first element to the (n-i-1)-th element
@@ -12,6 +12,6 @@ arr = [4, 2, 5, 6, 7, 8]  # Initialize an array
 
 print("Original array:", arr)  # Print the original array
 
-bubbleSort(arr)  # Sort the array using bubble sort
+bubblesort(arr)  # Sort the array using bubble sort
 
 print("Sorted array:", arr)  # Print the sorted array

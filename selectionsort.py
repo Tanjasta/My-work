@@ -1,6 +1,6 @@
 #Selection sort in Python, sorting by finding min_index
 
-def selection_sort(arr):
+def selectionsort(arr):
     n = len(arr)  # Get the length of the array
     for i in range(n):  # Iterate over each element in the array
         min_idx = i  # Assume the current index has the minimum element
@@ -22,6 +22,6 @@ print("Original array:", arr)  # Print the original array
 
 print("Selection sort diagram:")  # Print a label for the diagram
 
-selection_sort(arr)  # Sort the array using selection sort
+selectionsort(arr)  # Sort the array using selection sort
 
 print("Sorted array:", arr)  # Print the sorted array

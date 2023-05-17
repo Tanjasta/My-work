@@ -1,4 +1,4 @@
-def insertion_sort(arr):
+def insertionsort(arr):
     for i in range(1, len(arr)):  # Iterate over each element in the array starting from the second element
         key = arr[i]  # Store the current element as the key
         j = i - 1  # Set the initial index of the previous element
@@ -16,6 +16,6 @@ arr = [4, 2, 5, 6, 7, 8]  # Initialize an array
 
 print("Original array:", arr)  # Print the original array
 
-insertion_sort(arr)  # Sort the array using insertion sort
+insertionsort(arr)  # Sort the array using insertion sort
 
 print("Sorted array:", arr)  # Print the sorted array
