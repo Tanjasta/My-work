@@ -1,7 +1,7 @@
-import random
-import time
-import matplotlib.pyplot as plt
-import pandas as pd
+import random  # Import the random module for generating random numbers
+import time  # Import the time module for measuring the execution time
+import matplotlib.pyplot as plt  # Import the matplotlib.pyplot module for creating plots
+import pandas as pd  # Import the pandas module for data manipulation and analysis
 
 def bubblesort(arr):
     n = len(arr)  # Get the length of the array
@@ -93,7 +93,7 @@ def mergesort(array):
 
 
 def generate_random_array(n):
-    return [random.randint(0, 1000) for _ in range(n)]
+    return [random.randint(0, 1000) for _ in range(n)]  # Generate a list of random integers between 0 and 1000
 
 
 # Sorting algorithms
@@ -107,23 +107,23 @@ def benchmark_sorting_algorithms():
         "Merge Sort": mergesort
     }
 
-    input_sizes = [100, 250, 500, 750, 1000, 1250, 2500, 3750, 5000, 6250, 7500, 8750, 10000]
-    results = {algorithm: [] for algorithm in algorithms}
+    input_sizes = [100, 250, 500, 750, 1000, 1250, 2500, 3750, 5000, 6250, 7500, 8750, 10000]  # List of input sizes
+    results = {algorithm: [] for algorithm in algorithms}  # Create an empty dictionary to store the results
     output_results = []  # To store the results in the desired format
 
     for size in input_sizes:
         for algorithm in algorithms:
-            arr = generate_random_array(size)
-            start_time = time.time()
+            arr = generate_random_array(size)  # Generate a random array of the given size
+            start_time = time.time()  # Record the start time
             if algorithm == "Counting Sort":
-                max_val = max(arr)
-                algorithms[algorithm](arr, max_val)
+                max_val = max(arr)  # Find the maximum value in the array
+                algorithms[algorithm](arr, max_val)  # Call the counting sort algorithm with the maximum value
             else:
-                algorithms[algorithm](arr)
-            end_time = time.time()
-            total_time = (end_time - start_time) * 1000
-            avg_time = total_time / 10.0
-            results[algorithm].append(avg_time)
+                algorithms[algorithm](arr)  # Call the sorting algorithm
+            end_time = time.time()  # Record the end time
+            total_time = (end_time - start_time) * 1000  # Calculate the total execution time in milliseconds
+            avg_time = total_time / 10.0  # Calculate the average execution time over 10 iterations
+            results[algorithm].append(avg_time)  # Add the average time to the results dictionary
 
     # Store the results in the desired format
     for algorithm in algorithms:
@@ -132,7 +132,7 @@ def benchmark_sorting_algorithms():
     # Print the results
     columns = ["Algorithm"] + [str(size) for size in input_sizes]
     df = pd.DataFrame(output_results, columns=columns)
-    print(df.to_string(index=False))
+    print(df.to_string(index=False))  # Print the DataFrame without the index
 
     # Plot the results
     fig, ax = plt.subplots()
@@ -141,11 +141,11 @@ def benchmark_sorting_algorithms():
     ax.set_ylabel("Running Time (milliseconds)")
 
     for algorithm in algorithms:
-        ax.plot(input_sizes, results[algorithm], label=algorithm)
+        ax.plot(input_sizes, results[algorithm], label=algorithm)  # Plot the running time for each algorithm
 
     ax.legend()  # Show the legend
     plt.savefig('sorting_algorithms.png')  # Save the plot to a file
     plt.show()  # Display the plot
 
 
-benchmark_sorting_algorithms()
+benchmark_sorting_algorithms()  # Run the benchmarking function
